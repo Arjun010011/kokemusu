@@ -13,7 +13,7 @@ active           = "#d4a185"
 scale-with-font  = true
 size-horizontal  = 32
 size-vertical    = 30
-icon-font        = 12
+icon-font        = 15
 
 [hyprland]
 # Shared border tokens. Every surface references these, so lock,
