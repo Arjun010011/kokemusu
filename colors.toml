@@ -1,0 +1,41 @@
+mode = "dark"
+
+# Kokemusu: moss on old stone at dusk.
+# Faded, nearly neutral blacks for every surface. Green is its own colour, kept
+# for small signals (focus, the active workspace, prompts, toggles), never mixed
+# into the greys. Borders are plain grey. Nothing in this theme is a gradient.
+
+accent = "#7fa66e"
+cursor = "#cfcdc4"
+selection = "#2d3a2f"
+muted = "#62635e"
+
+background = "#161716"
+dark_background = "#121312"
+darker_background = "#0e0f0e"
+lighter_background = "#1e1f1e"
+
+foreground = "#cfcdc4"
+dark_foreground = "#7c7d77"
+light_foreground = "#b5b3aa"
+bright_foreground = "#e0ded5"
+
+red = "#c98378"
+yellow = "#d6bd8a"
+orange = "#d4a185"
+green = "#7fa66e"
+cyan = "#88aea7"
+blue = "#869fae"
+magenta = "#a798b0"
+brown = "#7d6a5a"
+
+bright_red = "#d6948a"
+bright_yellow = "#e0ca9c"
+bright_green = "#91b680"
+bright_cyan = "#98bcb5"
+bright_blue = "#97afbd"
+bright_magenta = "#b6a8bf"
+
+# Solid grey borders: brighter stone for the focused window, near-black for the rest.
+hyprland_active_border = "rgba(6e6f69ee)"
+hyprland_inactive_border = "rgba(2a2b29aa)"

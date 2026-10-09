@@ -1,0 +1,55 @@
+// Kokemusu for fastfetch: a fern on a mossy stone beside a quiet column of facts.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/kokemusu-logo.txt",
+    "color": {
+      "1": "38;2;127;166;110",
+      "2": "38;2;110;111;105"
+    },
+    "padding": { "top": 1, "left": 2, "right": 4 }
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "38;2;127;166;110",
+      "title": "38;2;207;205;196",
+      "output": "38;2;181;179;170",
+      "separator": "38;2;98;99;94"
+    },
+    "key": { "width": 8 },
+    "bar": {
+      "char": { "elapsed": "━", "total": "━" },
+      "color": { "elapsed": "38;2;127;166;110", "total": "38;2;42;43;41" },
+      "border": null,
+      "width": 12
+    },
+    "percent": { "type": ["bar", "hide-others"] }
+  },
+  "modules": [
+    "break",
+    {
+      "type": "title",
+      "format": "{user-name-colored}{at-symbol-colored}{host-name-colored}",
+      "color": { "user": "38;2;207;205;196", "at": "38;2;98;99;94", "host": "38;2;127;166;110" }
+    },
+    { "type": "custom", "format": "\u001b[38;2;42;43;41m─────────────────────" },
+    { "type": "os", "key": "os", "format": "{name}" },
+    { "type": "kernel", "key": "kernel", "format": "{release}" },
+    { "type": "wm", "key": "wm", "format": "{pretty-name}" },
+    { "type": "terminal", "key": "term", "format": "{pretty-name}" },
+    { "type": "shell", "key": "shell", "format": "{pretty-name}" },
+    { "type": "packages", "key": "pkgs", "format": "{all}" },
+    { "type": "uptime", "key": "uptime" },
+    { "type": "custom", "format": "\u001b[38;2;42;43;41m─────────────────────" },
+    { "type": "memory", "key": "mem" },
+    { "type": "disk", "key": "disk", "folders": "/" },
+    { "type": "battery", "key": "power" },
+    "break",
+    {
+      "type": "custom",
+      "format": "\u001b[38;2;201;131;120m● \u001b[38;2;212;161;133m● \u001b[38;2;214;189;138m● \u001b[38;2;127;166;110m● \u001b[38;2;136;174;167m● \u001b[38;2;134;159;174m● \u001b[38;2;167;152;176m●"
+    }
+  ]
+}

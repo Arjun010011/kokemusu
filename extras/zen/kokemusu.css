@@ -1,0 +1,123 @@
+/* Kokemusu for Zen Browser.
+   Imported from userChrome.css by install-extras.sh; remove that @import line to undo.
+   Palette: faded charcoal surfaces, paper text, grey borders, moss for what is chosen. All flat. */
+
+:root,
+#main-window,
+#browser {
+  --km-ink: #161716;
+  --km-ink-deep: #121312;
+  --km-ink-raised: #1e1f1e;
+  --km-sel: #2d3a2f;
+  --km-fog: #62635e;
+  --km-dim: #7c7d77;
+  --km-text: #cfcdc4;
+  --km-text-soft: #b5b3aa;
+  --km-moss: #7fa66e;
+  --km-edge: #6e6f69;
+  --km-sage: #9a9890;
+
+  color-scheme: dark !important;
+
+  --zen-primary-color: var(--km-moss) !important;
+  --zen-colors-primary: var(--km-sel) !important;
+  --zen-colors-secondary: var(--km-ink-raised) !important;
+  --zen-colors-tertiary: var(--km-ink-deep) !important;
+  --zen-colors-hover-bg: color-mix(in srgb, var(--km-sage) 8%, transparent) !important;
+  --zen-colors-primary-foreground: var(--km-text) !important;
+  --zen-colors-border: color-mix(in srgb, var(--km-sage) 10%, transparent) !important;
+  --zen-colors-border-contrast: color-mix(in srgb, var(--km-sage) 16%, transparent) !important;
+  --zen-colors-input-bg: var(--km-ink-deep) !important;
+  --zen-dialog-background: var(--km-ink) !important;
+  --zen-in-content-dialog-background: var(--km-ink) !important;
+  --zen-urlbar-background: var(--km-ink-raised) !important;
+  --zen-toolbar-element-bg: color-mix(in srgb, var(--km-sage) 6%, transparent) !important;
+  --zen-toolbar-element-bg-hover: color-mix(in srgb, var(--km-sage) 12%, transparent) !important;
+  --zen-input-border-color: var(--km-fog) !important;
+  --zen-main-browser-background: var(--km-ink) !important;
+  --zen-main-browser-background-toolbar: var(--km-ink) !important;
+  --zen-themed-toolbar-bg-transparent: var(--km-ink) !important;
+  --zen-sidebar-themed-icon-fill: var(--km-sage) !important;
+  --zen-appcontent-border: 1px solid color-mix(in srgb, var(--km-sage) 9%, transparent) !important;
+
+  /* Firefox tokens Zen still reads */
+  --toolbar-bgcolor: var(--km-ink) !important;
+  --toolbar-color: var(--km-text) !important;
+  --toolbar-field-background-color: var(--km-ink-raised) !important;
+  --toolbar-field-focus-background-color: var(--km-ink-deep) !important;
+  --toolbar-field-color: var(--km-text) !important;
+  --toolbar-field-focus-color: var(--km-text) !important;
+  --toolbar-field-focus-border-color: var(--km-edge) !important;
+  --toolbarbutton-icon-fill: var(--km-sage) !important;
+  --lwt-text-color: var(--km-text) !important;
+  --lwt-sidebar-background-color: var(--km-ink-deep) !important;
+  --lwt-sidebar-text-color: var(--km-text-soft) !important;
+  --tab-selected-bgcolor: color-mix(in srgb, var(--km-sage) 12%, var(--km-ink)) !important;
+  --tab-selected-textcolor: var(--km-text) !important;
+  --focus-outline-color: var(--km-edge) !important;
+  --arrowpanel-background: var(--km-ink) !important;
+  --arrowpanel-color: var(--km-text) !important;
+  --arrowpanel-border-color: color-mix(in srgb, var(--km-sage) 12%, transparent) !important;
+  --panel-separator-color: color-mix(in srgb, var(--km-sage) 10%, transparent) !important;
+  --urlbarView-highlight-background: var(--km-sel) !important;
+  --urlbarView-highlight-color: var(--km-text) !important;
+  --autocomplete-popup-highlight-background: var(--km-sel) !important;
+  --autocomplete-popup-highlight-color: var(--km-text) !important;
+  --link-color: var(--km-moss) !important;
+}
+
+/* The window behind the web page: one flat charcoal */
+#browser,
+#navigator-toolbox,
+#zen-main-app-wrapper {
+  background: var(--zen-main-browser-background) !important;
+}
+
+/* Tabs: quiet by default, a stone pill with a thin moss edge when selected */
+.tabbrowser-tab .tab-background {
+  border-radius: 8px !important;
+  transition: background-color 220ms ease, box-shadow 220ms ease !important;
+}
+.tabbrowser-tab:hover .tab-background:not([selected]) {
+  background-color: color-mix(in srgb, var(--km-sage) 7%, transparent) !important;
+}
+.tabbrowser-tab .tab-background:is([selected], [multiselected]) {
+  background-color: var(--tab-selected-bgcolor) !important;
+  box-shadow: inset 2px 0 0 var(--km-moss),
+              0 1px 6px rgba(0, 0, 0, 0.25) !important;
+}
+.tabbrowser-tab .tab-label { color: var(--km-text-soft) !important; }
+.tabbrowser-tab[selected] .tab-label { color: var(--km-text) !important; }
+
+/* URL bar: ash field, grey ring on focus */
+#urlbar-background {
+  background-color: var(--km-ink-raised) !important;
+  border: 1px solid color-mix(in srgb, var(--km-sage) 10%, transparent) !important;
+  transition: border-color 220ms ease, background-color 220ms ease !important;
+}
+#urlbar[focused] #urlbar-background,
+#urlbar[open] #urlbar-background {
+  background-color: var(--km-ink-deep) !important;
+  border-color: var(--km-edge) !important;
+}
+#urlbar-input::selection { background-color: var(--km-sel) !important; }
+
+/* Menus and panels */
+menupopup, panel {
+  --panel-background: var(--km-ink) !important;
+  --panel-color: var(--km-text) !important;
+  --panel-border-color: color-mix(in srgb, var(--km-sage) 12%, transparent) !important;
+}
+menupopup menuitem[_moz-menuactive],
+menupopup menu[_moz-menuactive] {
+  background-color: var(--km-sel) !important;
+  color: var(--km-text) !important;
+}
+
+/* The page frame: a hairline instead of a heavy border */
+#tabbrowser-tabbox,
+.browserSidebarContainer {
+  outline-color: color-mix(in srgb, var(--km-sage) 9%, transparent) !important;
+}
+
+::selection { background-color: var(--km-sel) !important; color: var(--km-text) !important; }

@@ -1,0 +1,16 @@
+# Kokemusu for lazygit. install-extras.sh merges this into ~/.config/lazygit/config.yml.
+gui:
+  border: rounded
+  theme:
+    activeBorderColor: ["#8a8b85", "bold"]
+    inactiveBorderColor: ["#2c2d2b"]
+    searchingActiveBorderColor: ["#d6bd8a", "bold"]
+    optionsTextColor: ["#869fae"]
+    selectedLineBgColor: ["#2d3a2f"]
+    inactiveViewSelectedLineBgColor: ["#1e1f1e"]
+    cherryPickedCommitFgColor: ["#161716"]
+    cherryPickedCommitBgColor: ["#a798b0"]
+    markedBaseCommitFgColor: ["#161716"]
+    markedBaseCommitBgColor: ["#d6bd8a"]
+    unstagedChangesColor: ["#c98378"]
+    defaultFgColor: ["#cfcdc4"]

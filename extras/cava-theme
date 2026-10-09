@@ -1,0 +1,4 @@
+# Kokemusu for cava: flat moss bars, no gradient.
+[color]
+gradient = 0
+foreground = '#7fa66e'

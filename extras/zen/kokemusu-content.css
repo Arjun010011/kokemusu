@@ -1,0 +1,26 @@
+/* Kokemusu for Zen's own pages (new tab, settings, about: pages).
+   Imported from userContent.css by install-extras.sh. */
+
+@-moz-document url-prefix("about:") {
+  :root {
+    --newtab-background-color: #161716 !important;
+    --newtab-background-color-secondary: #1e1f1e !important;
+    --newtab-text-primary-color: #cfcdc4 !important;
+    --in-content-page-background: #161716 !important;
+    --in-content-page-color: #cfcdc4 !important;
+    --in-content-box-background: #1e1f1e !important;
+    --in-content-box-border-color: rgba(157, 180, 173, 0.12) !important;
+    --in-content-item-hover: rgba(157, 180, 173, 0.08) !important;
+    --in-content-item-selected: #2d3a2f !important;
+    --in-content-primary-button-background: #7fa66e !important;
+    --in-content-primary-button-background-hover: #a7b89c !important;
+    --in-content-primary-button-text-color: #161716 !important;
+    --in-content-accent-color: #7fa66e !important;
+    --in-content-link-color: #7fa66e !important;
+    --in-content-focus-outline-color: #7fa66e !important;
+    --color-accent-primary: #7fa66e !important;
+    --background-color-canvas: #161716 !important;
+    --text-color: #cfcdc4 !important;
+  }
+  body { background-color: #161716 !important; color: #cfcdc4 !important; }
+}

@@ -1,0 +1,20 @@
+--- Panel.qml	2026-09-16 02:34:52.000000000 +0530
++++ Panel.qml	2026-09-29 22:52:58.749060787 +0530
+@@ -957,6 +957,17 @@
+     id: button
+     anchors.fill: parent
+     bar: root.bar
++    // Kokemusu: hand-drawn hairline icon for the glyph this widget picks.
++    iconComponent: stoneIconComponent
++    Component {
++      id: stoneIconComponent
++      StoneIcon {
++        glyph: button.text
++        color: button.active && button.useActiveColor ? button.activeColor : button.foreground
++        fontFamily: button.fontFamily
++        fontSize: button.fontSize
++      }
++    }
+     text: root.icon
+ 
+     onPressed: function(b) {

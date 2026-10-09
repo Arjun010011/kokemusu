@@ -1,0 +1,197 @@
+# Kokemusu shell surfaces. Flat charcoal cards, faded paper text, grey
+# hairline borders. Moss green appears only on small signals: the active
+# workspace, switches that are on, the countdown line. No gradients.
+
+[bar]
+# Alpha companions (where present) range from 0 (invisible) to 1 (opaque).
+# With the Kokemusu bar patch this colours the three floating blocks; the
+# strip behind them stays clear.
+background       = "#1a1b1a"
+background-alpha = 0.94
+text             = "#b5b3aa"
+# Modules calling attention to themselves (recording, voxtype, alerts, updates)
+active           = "#d4a185"
+scale-with-font  = true
+size-horizontal  = 36
+size-vertical    = 34
+icon-font        = 12
+
+[hyprland]
+# Shared border tokens. Every surface references these, so lock,
+# notifications, popups and menus match the solid grey window border.
+active-border            = "#6e6f69"
+active-border-foreground = "#6e6f69"
+
+[controls]
+# Normal: idle control chrome.
+normal-color        = "#cfcdc4"
+normal-fill-alpha   = 0.04
+normal-border       = "#cfcdc4"
+normal-border-width = 1
+normal-border-alpha = 0.12
+
+# Hover-cursor: mouse hover and the panel keyboard cursor. Grey, not green.
+hover-cursor-color        = "#e0ded5"
+hover-cursor-fill-alpha   = 0.07
+hover-cursor-border       = "#6e6f69"
+hover-cursor-border-width = 1
+hover-cursor-border-alpha = 0.8
+
+# Focus: Qt activeFocus. A plain grey ring.
+focus-color        = "#e0ded5"
+focus-fill-alpha   = 0.07
+focus-border       = "#8a8b85"
+focus-border-width = 1
+focus-border-alpha = 0.8
+
+# Selected: persistent chosen/current state. This is where moss shows up.
+selected-color        = "#7fa66e"
+selected-fill-alpha   = 0.14
+selected-border       = "#7fa66e"
+selected-border-width = 0
+selected-border-alpha = 1.0
+
+# Momentary fills.
+pressed-fill-alpha   = 0.2
+selection-fill-alpha = 0.35
+
+[spacing]
+# `scale` multiplies shared margins, gaps, padding, controls, and panel
+# dimensions; components keep their proportions. With scale-with-font
+# enabled, those dimensions grow/shrink with [font] base-size too. Per-token
+# overrides (in px) below pin individual values without affecting the rest
+# of the scale. Uncomment any to tune a specific surface.
+scale = 1.0
+scale-with-font = true
+# xxs                       = 2
+# xs                        = 3
+# sm                        = 4
+# md                        = 6
+# lg                        = 8
+# xl                        = 10
+# xxl                       = 12
+# xxxl                      = 14
+# huge                      = 18
+# control-gap               = 8
+# control-padding-x         = 10
+# control-padding-y         = 6
+# input-padding-y           = 7
+# control-height            = 28
+# popup-row-height          = 28
+# row-gap                   = 8
+# row-padding-x             = 12
+# label-gap                 = 4
+# panel-gap                 = 14
+# panel-padding             = 18
+# popup-padding             = 14
+# dropdown-width            = 240
+# searchable-dropdown-width = 260
+# number-field-width        = 120
+# searchable-popup-min-height = 220
+
+[font]
+# base-size is the rem root for the type scale. Every Style.font.<token>
+# derives from it (e.g. body = base, subtitle ≈ base * 1.083,
+# heading ≈ base * 1.333). The shell only floors this at 1px; increase it
+# as much as you want.
+base-size = 12
+# Per-token overrides, in px. Uncomment any to pin a specific size without
+# affecting the rest of the scale. Useful for stylistic emphasis (a
+# minimalist theme that wants a bigger heading without scaling everything).
+# caption       = 10
+# body-small    = 11
+# body          = 12
+# subtitle      = 13
+# title         = 14
+# heading       = 16
+# display       = 24
+# display-large = 28
+# icon-small    = 11
+# icon          = 14
+# icon-large    = 18
+
+[popups]
+# Shared by every bar flyout (dropdowns, OSD, popup cards).
+background       = "#1a1b1a"
+background-alpha = 0.97
+text             = "#cfcdc4"
+border           = "#4a4b47"
+border-alpha     = 1.0
+
+[tooltip]
+background       = "#1e1f1e"
+background-alpha = 0.98
+text             = "#cfcdc4"
+border           = "#4a4b47"
+border-alpha     = 1.0
+
+[notifications]
+background       = "#1a1b1a"
+background-alpha = 0.97
+text             = "#cfcdc4"
+border           = "#4a4b47"
+border-alpha     = 1.0
+countdown        = "#7fa66e"
+
+[launcher]
+background                = "#1a1b1a"
+background-alpha          = 0.98
+text                      = "#cfcdc4"
+border                    = "#4a4b47"
+border-alpha              = 1.0
+scrim                     = "#0e0f0e"
+scrim-alpha               = 0.4
+selected-background       = "#2d3a2f"
+selected-background-alpha = 1.0
+selected-text             = "#e0ded5"
+selected-border           = "#2d3a2f"
+selected-border-alpha     = 0.0
+
+[menu]
+background                = "#1a1b1a"
+background-alpha          = 0.98
+text                      = "#cfcdc4"
+border                    = "#4a4b47"
+border-alpha              = 1.0
+scrim                     = "#0e0f0e"
+scrim-alpha               = 0.4
+selected-background       = "#2d3a2f"
+selected-background-alpha = 1.0
+selected-text             = "#e0ded5"
+selected-border           = "#2d3a2f"
+selected-border-alpha     = 0.0
+
+[polkit]
+background       = "#1a1b1a"
+background-alpha = 1.0
+text             = "#cfcdc4"
+text-error       = "#c98378"
+border           = "#4a4b47"
+border-error     = "#c98378"
+border-alpha     = 1.0
+scrim            = "#0e0f0e"
+scrim-alpha      = 0.55
+accent           = "#7fa66e"
+
+[lock]
+# Lock screen password field. Grey in every state; red only on a wrong password.
+background       = "#121312"
+background-alpha = 0.72
+text             = "#e0ded5"
+placeholder      = "#7c7d77"
+text-error       = "#c98378"
+border           = "#4a4b47"
+border-active    = "#8a8b85"
+border-error     = "#c98378"
+border-alpha     = 1.0
+selection        = "#7fa66e"
+selection-alpha  = 0.4
+
+[image-picker]
+scrim                   = "#0e0f0e"
+scrim-alpha             = 0.55
+text                    = "#cfcdc4"
+selected-border         = "#cfcdc4"
+selected-border-alpha   = 1.0
+unselected-border       = "#cfcdc4"
+unselected-border-alpha = 0.14

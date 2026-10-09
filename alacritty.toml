@@ -1,0 +1,61 @@
+# Kokemusu: faded paper on charcoal, moss for the few things that matter.
+# [window] must precede the [colors.*] tables, or alacritty reads its keys as colors.*.
+[window]
+padding = { x = 12, y = 10 }
+dynamic_padding = true
+opacity = 0.95
+
+[cursor]
+style = { shape = "Beam", blinking = "On" }
+blink_interval = 600
+blink_timeout = 15
+thickness = 0.12
+
+[colors.primary]
+background = "#161716"
+foreground = "#cfcdc4"
+bright_foreground = "#e0ded5"
+
+[colors.cursor]
+text = "#161716"
+cursor = "#cfcdc4"
+
+[colors.vi_mode_cursor]
+text = "#161716"
+cursor = "#7fa66e"
+
+[colors.search.matches]
+foreground = "#161716"
+background = "#869fae"
+
+[colors.search.focused_match]
+foreground = "#161716"
+background = "#7fa66e"
+
+[colors.footer_bar]
+foreground = "#cfcdc4"
+background = "#1e1f1e"
+
+[colors.selection]
+text = "#e0ded5"
+background = "#2d3a2f"
+
+[colors.normal]
+black = "#1e1f1e"
+red = "#c98378"
+green = "#7fa66e"
+yellow = "#d6bd8a"
+blue = "#869fae"
+magenta = "#a798b0"
+cyan = "#88aea7"
+white = "#b5b3aa"
+
+[colors.bright]
+black = "#62635e"
+red = "#d6948a"
+green = "#91b680"
+yellow = "#e0ca9c"
+blue = "#97afbd"
+magenta = "#b6a8bf"
+cyan = "#98bcb5"
+white = "#e0ded5"

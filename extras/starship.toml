@@ -1,0 +1,91 @@
+"$schema" = "https://starship.rs/config-schema.json"
+# Kokemusu prompt: one quiet line of context, then a moss caret.
+
+add_newline = true
+format = """
+$directory$git_branch$git_state$git_status$python$nodejs$rust$golang$cmd_duration$fill$time
+$character"""
+
+palette = "kokemusu"
+
+[palettes.kokemusu]
+stone = "#62635e"
+dim = "#7c7d77"
+text = "#b5b3aa"
+moss = "#7fa66e"
+creek = "#869fae"
+peach = "#d4a185"
+straw = "#d6bd8a"
+rust = "#c98378"
+heather = "#a798b0"
+
+[character]
+success_symbol = "[›](moss)"
+error_symbol = "[›](rust)"
+vimcmd_symbol = "[‹](moss)"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style) "
+style = "text"
+repo_root_style = "bold text"
+before_repo_root_style = "dim"
+read_only = " 󰌾"
+read_only_style = "stone"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+
+[git_branch]
+format = "[on](stone) [$symbol$branch]($style) "
+symbol = " "
+style = "creek"
+
+[git_state]
+style = "straw"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "heather"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕"
+modified = "~"
+staged = "+"
+untracked = "?"
+deleted = "×"
+stashed = "≡"
+
+[python]
+format = "[via](stone) [${symbol}${version}]($style) "
+symbol = " "
+style = "straw"
+
+[nodejs]
+format = "[via](stone) [$symbol$version]($style) "
+symbol = " "
+style = "moss"
+
+[rust]
+format = "[via](stone) [$symbol$version]($style) "
+symbol = " "
+style = "rust"
+
+[golang]
+format = "[via](stone) [$symbol$version]($style) "
+symbol = " "
+style = "creek"
+
+[cmd_duration]
+min_time = 2000
+format = "[took](stone) [$duration]($style) "
+style = "straw"
+
+[fill]
+symbol = " "
+
+[time]
+disabled = false
+format = "[$time]($style)"
+time_format = "%H:%M"
+style = "stone"

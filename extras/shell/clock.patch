@@ -1,0 +1,69 @@
+--- BarWidget.qml
++++ BarWidget.qml
+@@ -139,13 +139,21 @@
+     function toggle(): void { root.togglePanel() }
+   }
+ 
++  // Kokemusu: the default "weekday time" format is drawn as a quiet lowercase
++  // weekday in the bar font, the time in Instrument Serif, and a small
++  // meridiem. Any other format (right-click cycles them) falls back to the label.
++  readonly property string serifFamily: "Instrument Serif"
++  readonly property bool crafted: !vertical && /dddd/.test(activeFormat) && /h:mm/.test(activeFormat)
++  readonly property var timeParts: Qt.formatTime(displayDate, /AP/i.test(activeFormat) ? "h:mm AP" : "HH:mm").split(" ")
++
+   WidgetButton {
+     id: button
+     anchors.fill: parent
+     bar: root.bar
+-    text: root.vertical ? "" : root.displayText
+-    labelVisible: !root.vertical
+-    hasVisualContent: root.vertical ? root.verticalLines.length > 0 : text !== ""
++    text: root.vertical || root.crafted ? "" : root.displayText
++    labelVisible: !root.vertical && !root.crafted
++    hasVisualContent: root.vertical ? root.verticalLines.length > 0 : (root.crafted || text !== "")
++    fixedWidth: root.crafted ? craftedRow.implicitWidth + scaledHorizontalMargin * 2 : -1
+     fixedHeight: root.vertical ? root.verticalLines.length * Style.bar.iconSlot : -1
+     horizontalMargin: 8.75
+     verticalPadding: 8.75
+@@ -156,6 +164,41 @@
+       else root.togglePanel()
+     }
+ 
++    Row {
++      id: craftedRow
++      visible: root.crafted
++      anchors.centerIn: parent
++      spacing: Style.spaceReal(3)
++
++      Text {
++        anchors.baseline: timeText.baseline
++        text: Qt.formatDate(root.displayDate, "dddd").toLowerCase()
++        color: Util.alpha(button.foreground, 0.7)
++        font.family: button.fontFamily
++        font.pixelSize: button.fontSize * 0.95
++        font.letterSpacing: 0.4
++      }
++
++      Text {
++        id: timeText
++        anchors.verticalCenter: parent.verticalCenter
++        text: root.timeParts[0]
++        color: Color.foreground
++        font.family: root.serifFamily
++        font.pixelSize: button.fontSize * 1.55
++      }
++
++      Text {
++        visible: root.timeParts.length > 1
++        anchors.baseline: timeText.baseline
++        text: root.timeParts.length > 1 ? root.timeParts[1].toLowerCase() : ""
++        color: Util.alpha(button.foreground, 0.55)
++        font.family: root.serifFamily
++        font.italic: true
++        font.pixelSize: button.fontSize * 1.15
++      }
++    }
++
+     Column {
+       visible: root.vertical
+       anchors.fill: parent

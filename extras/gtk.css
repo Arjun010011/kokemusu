@@ -1,0 +1,200 @@
+/* Kokemusu 苔むす for GTK 3 and 4 (libadwaita).
+ *
+ * Faded charcoal surfaces, paper text, and grey hairlines instead of boxes.
+ * Moss green marks only what is switched on or chosen; focus rings and borders
+ * stay grey. No gradients anywhere. Most of the work goes through libadwaita's
+ * named colours, so apps keep their own layout and only the colours change.
+ * install-extras.sh copies this file to ~/.config/gtk-3.0/ and ~/.config/gtk-4.0/.
+ */
+
+/* Palette */
+@define-color km_ash        #161716;
+@define-color km_ash_deep   #121312;
+@define-color km_ash_raised #1e1f1e;
+@define-color km_stone      #2a2b29;
+@define-color km_hairline   #2c2d2b;
+@define-color km_edge       #4a4b47;
+@define-color km_edge_hi    #6e6f69;
+@define-color km_muted      #62635e;
+@define-color km_paper      #cfcdc4;
+@define-color km_paper_hi   #e0ded5;
+@define-color km_moss       #7fa66e;
+@define-color km_moss_dim   #3f5438;
+@define-color km_selection  #2d3a2f;
+@define-color km_peach      #d4a185;
+@define-color km_straw      #d6bd8a;
+@define-color km_rust       #c98378;
+
+/* libadwaita named colours (GTK 4) */
+@define-color accent_color            @km_moss;
+@define-color accent_bg_color         @km_moss_dim;
+@define-color accent_fg_color         @km_paper_hi;
+@define-color destructive_color       @km_rust;
+@define-color destructive_bg_color    @km_rust;
+@define-color destructive_fg_color    @km_ash;
+@define-color success_color           @km_moss;
+@define-color success_bg_color        @km_moss_dim;
+@define-color success_fg_color        @km_paper_hi;
+@define-color warning_color           @km_straw;
+@define-color warning_bg_color        @km_straw;
+@define-color warning_fg_color        @km_ash;
+@define-color error_color             @km_rust;
+@define-color error_bg_color          @km_rust;
+@define-color error_fg_color          @km_ash;
+
+@define-color window_bg_color         @km_ash;
+@define-color window_fg_color         @km_paper;
+@define-color view_bg_color           @km_ash_deep;
+@define-color view_fg_color           @km_paper;
+@define-color headerbar_bg_color      @km_ash;
+@define-color headerbar_fg_color      @km_paper;
+@define-color headerbar_border_color  @km_hairline;
+@define-color headerbar_backdrop_color @km_ash;
+@define-color headerbar_shade_color   transparent;
+@define-color headerbar_darker_shade_color transparent;
+@define-color sidebar_bg_color        @km_ash_deep;
+@define-color sidebar_fg_color        @km_paper;
+@define-color sidebar_backdrop_color  @km_ash_deep;
+@define-color sidebar_border_color    @km_hairline;
+@define-color sidebar_shade_color     transparent;
+@define-color secondary_sidebar_bg_color @km_ash;
+@define-color secondary_sidebar_fg_color @km_paper;
+@define-color card_bg_color           @km_ash_raised;
+@define-color card_fg_color           @km_paper;
+@define-color card_shade_color        alpha(black, 0.25);
+@define-color dialog_bg_color         @km_ash_raised;
+@define-color dialog_fg_color         @km_paper;
+@define-color popover_bg_color        @km_ash_raised;
+@define-color popover_fg_color        @km_paper;
+@define-color popover_shade_color     alpha(black, 0.35);
+@define-color thumbnail_bg_color      @km_ash_raised;
+@define-color thumbnail_fg_color      @km_paper;
+@define-color shade_color             alpha(black, 0.3);
+@define-color scrollbar_outline_color transparent;
+
+/* GTK 3 names */
+@define-color theme_bg_color            @km_ash;
+@define-color theme_fg_color            @km_paper;
+@define-color theme_base_color          @km_ash_deep;
+@define-color theme_text_color          @km_paper;
+@define-color theme_selected_bg_color   @km_selection;
+@define-color theme_selected_fg_color   @km_paper_hi;
+@define-color insensitive_fg_color      @km_muted;
+@define-color borders                   @km_hairline;
+@define-color unfocused_borders         @km_hairline;
+
+/* Selection: a low moss wash, never a loud block */
+selection,
+*:selected,
+row:selected {
+  background-color: @km_selection;
+  color: @km_paper_hi;
+}
+
+/* Header bars: flat, closed off by a single hairline */
+headerbar {
+  box-shadow: inset 0 -1px @km_hairline;
+  border: none;
+}
+
+/* Buttons: stone fills, no colour until something is chosen */
+button {
+  transition: background-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+button.flat:hover,
+button:hover {
+  background-color: alpha(@km_paper, 0.06);
+}
+button:active,
+button:checked {
+  background-color: @km_stone;
+}
+button.suggested-action {
+  background-color: @km_moss_dim;
+  color: @km_paper_hi;
+  box-shadow: none;
+}
+button.suggested-action:hover {
+  background-color: shade(@km_moss_dim, 1.15);
+}
+button.destructive-action {
+  background-color: alpha(@km_rust, 0.18);
+  color: @km_paper_hi;
+  box-shadow: inset 0 0 0 1px alpha(@km_rust, 0.5);
+}
+
+/* Text fields: a grey hairline that brightens on focus */
+entry,
+spinbutton,
+searchbar entry {
+  background-color: @km_ash_deep;
+  box-shadow: inset 0 0 0 1px @km_hairline;
+}
+entry:focus-within,
+entry:focus {
+  box-shadow: inset 0 0 0 1px @km_edge_hi;
+  outline: none;
+}
+
+/* Keyboard focus: a grey ring instead of the stock blue */
+*:focus-visible {
+  outline-color: @km_edge_hi;
+}
+
+/* Floating surfaces: raised ash with one hairline */
+popover > contents,
+popover.menu > contents,
+menu,
+.csd.popup decoration,
+tooltip {
+  background-color: @km_ash_raised;
+  box-shadow: 0 0 0 1px @km_edge, 0 10px 28px alpha(black, 0.4);
+}
+tooltip,
+tooltip.background {
+  background-color: @km_ash_raised;
+  color: @km_paper;
+}
+
+/* Lists and sidebars: quiet rows, a stone fill for the chosen one */
+.navigation-sidebar > row:hover,
+list > row:hover {
+  background-color: alpha(@km_paper, 0.04);
+}
+.navigation-sidebar > row:selected {
+  background-color: @km_stone;
+  color: @km_paper_hi;
+}
+
+/* Switches, sliders, progress: moss is the fill, stone is the track */
+switch:checked,
+scale highlight,
+progressbar progress,
+levelbar block.filled {
+  background-color: @km_moss;
+}
+switch,
+scale trough,
+progressbar trough {
+  background-color: @km_stone;
+}
+switch slider,
+scale slider {
+  background-color: @km_paper_hi;
+}
+
+/* Scrollbars: a thin thread that wakes on hover */
+scrollbar slider {
+  background-color: alpha(@km_paper, 0.18);
+  min-width: 4px;
+  min-height: 4px;
+}
+scrollbar slider:hover {
+  background-color: alpha(@km_paper, 0.35);
+}
+
+/* Links in straw, the one warm note */
+link,
+*:link {
+  color: @km_straw;
+}
