@@ -1,5 +1,6 @@
-// Kokemusu for fastfetch: a portrait traced in moss on faded paper, beside the
-// system grouped into small trees with moss headings and a row of palette swatches.
+// Kokemusu for fastfetch: a paper swan on dark water, moss ripples spreading from
+// it and a broken stone reflection below, beside the system grouped into small
+// trees with moss headings and a row of palette swatches.
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "logo": {
@@ -7,9 +8,10 @@
     "source": "~/.config/fastfetch/kokemusu-logo.txt",
     "color": {
       "1": "38;2;127;166;110",
-      "2": "38;2;181;179;170"
+      "2": "38;2;207;205;196",
+      "3": "38;2;98;99;94"
     },
-    "padding": { "top": 1, "left": 1, "right": 3 }
+    "padding": { "top": 1, "left": 2, "right": 4 }
   },
   "display": {
     "separator": "",
@@ -35,7 +37,7 @@
       "format": "{user-name-colored}{at-symbol-colored}{host-name-colored}",
       "color": { "user": "38;2;224;222;213", "at": "38;2;74;75;71", "host": "38;2;127;166;110" }
     },
-    { "type": "custom", "format": "\u001b[38;2;98;99;94m苔むす  moss on old stone" },
+    { "type": "custom", "format": "\u001b[38;2;98;99;94m苔むす  a swan on still water" },
     "break",
 
     { "type": "custom", "format": "\u001b[38;2;127;166;110m╭─ \u001b[38;2;207;205;196msystem" },
