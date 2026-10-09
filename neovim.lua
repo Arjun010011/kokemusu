@@ -190,6 +190,28 @@ return {
       end,
     },
   },
+  -- Statusline: stone blocks with the mode in moss; colour only marks the mode.
+  {
+    "nvim-lualine/lualine.nvim",
+    optional = true,
+    opts = function(_, opts)
+      local stone, ash, deep = "#2a2b29", "#1e1f1e", "#121312"
+      local paper, dim = "#cfcdc4", "#9a9890"
+      local function mode(fg)
+        return { a = { fg = fg, bg = stone, gui = "bold" }, b = { fg = paper, bg = ash }, c = { fg = dim, bg = deep } }
+      end
+      opts.options = opts.options or {}
+      opts.options.theme = {
+        normal = mode("#7fa66e"),
+        insert = mode("#d6bd8a"),
+        visual = mode("#a798b0"),
+        replace = mode("#c98378"),
+        command = mode("#d4a185"),
+        terminal = mode("#88aea7"),
+        inactive = { a = { fg = dim, bg = deep }, b = { fg = dim, bg = deep }, c = { fg = dim, bg = deep } },
+      }
+    end,
+  },
   {
     "LazyVim/LazyVim",
     opts = {

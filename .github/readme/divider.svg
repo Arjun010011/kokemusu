@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 30" width="1200" height="30" role="img" aria-label="">
+  <style>
+    .m { animation: m 9s ease-in-out infinite; }
+    @keyframes m { 0% { transform: translateX(0); opacity: 0 } 10% { opacity: 1 } 45% { transform: translateX(520px); opacity: 0 } 100% { opacity: 0 } }
+    .m2 { animation: m2 9s ease-in-out infinite; }
+    @keyframes m2 { 0% { opacity: 0 } 50% { transform: translateX(0); opacity: 0 } 60% { opacity: 1 } 95% { transform: translateX(520px); opacity: 0 } 100% { opacity: 0 } }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+  </style>
+  <rect x="40" y="14.5" width="520" height="1" fill="#3a3b38"/>
+  <rect x="640" y="14.5" width="520" height="1" fill="#3a3b38"/>
+  <rect class="m" x="40" y="14" width="40" height="2" fill="#7fa66e"/>
+  <rect class="m2" x="640" y="14" width="40" height="2" fill="#7fa66e"/>
+  <circle cx="600" cy="15" r="4" fill="#7fa66e"/>
+  <circle cx="584" cy="15" r="1.6" fill="#62635e"/>
+  <circle cx="616" cy="15" r="1.6" fill="#62635e"/>
+</svg>
