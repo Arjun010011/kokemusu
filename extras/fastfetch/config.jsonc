@@ -11,7 +11,7 @@
       "2": "38;2;207;205;196",
       "3": "38;2;98;99;94"
     },
-    "padding": { "top": 1, "left": 2, "right": 4 }
+    "padding": { "top": 0, "left": 1, "right": 3 }
   },
   "display": {
     "separator": "",
@@ -25,7 +25,7 @@
       "char": { "elapsed": "■", "total": "·" },
       "color": { "elapsed": "38;2;127;166;110", "total": "38;2;74;75;71" },
       "border": null,
-      "width": 14
+      "width": 8
     },
     "percent": { "type": ["bar", "num"], "color": { "green": "38;2;127;166;110", "yellow": "38;2;214;189;138", "red": "38;2;201;131;120" } }
   },
@@ -40,26 +40,26 @@
     { "type": "custom", "format": "\u001b[38;2;98;99;94m苔むす  a swan on still water" },
     "break",
 
-    { "type": "custom", "format": "\u001b[38;2;127;166;110m╭─ \u001b[38;2;207;205;196msystem" },
-    { "type": "os", "key": "│  os         ", "keyColor": "38;2;74;75;71", "format": "{pretty-name}" },
-    { "type": "kernel", "key": "│  kernel     ", "keyColor": "38;2;74;75;71", "format": "{release}" },
-    { "type": "wm", "key": "│  wm         ", "keyColor": "38;2;74;75;71", "format": "{pretty-name}" },
-    { "type": "shell", "key": "│  shell      ", "keyColor": "38;2;74;75;71", "format": "{pretty-name} {version}" },
-    { "type": "terminal", "key": "│  terminal   ", "keyColor": "38;2;74;75;71", "format": "{pretty-name}" },
-    { "type": "packages", "key": "╰  packages   ", "keyColor": "38;2;74;75;71", "format": "{all}" },
+    { "type": "custom", "format": "\u001b[38;2;127;166;110m╭ \u001b[38;2;207;205;196msystem" },
+    { "type": "os", "key": "│ os       ", "keyColor": "38;2;74;75;71", "format": "{pretty-name}" },
+    { "type": "kernel", "key": "│ kernel   ", "keyColor": "38;2;74;75;71", "format": "{release}" },
+    { "type": "wm", "key": "│ wm       ", "keyColor": "38;2;74;75;71", "format": "{pretty-name}" },
+    { "type": "shell", "key": "│ shell    ", "keyColor": "38;2;74;75;71", "format": "{pretty-name} {version}" },
+    { "type": "terminal", "key": "│ terminal ", "keyColor": "38;2;74;75;71", "format": "{pretty-name}" },
+    { "type": "packages", "key": "╰ packages ", "keyColor": "38;2;74;75;71", "format": "{all}" },
     "break",
 
-    { "type": "custom", "format": "\u001b[38;2;127;166;110m╭─ \u001b[38;2;207;205;196mhardware" },
-    { "type": "cpu", "key": "│  cpu        ", "keyColor": "38;2;74;75;71", "format": "{name}  {cores-logical} threads" },
-    { "type": "gpu", "key": "│  gpu        ", "keyColor": "38;2;74;75;71", "format": "{name}" },
-    { "type": "memory", "key": "│  memory     ", "keyColor": "38;2;74;75;71" },
-    { "type": "disk", "key": "│  disk       ", "keyColor": "38;2;74;75;71", "folders": "/" },
-    { "type": "battery", "key": "╰  battery    ", "keyColor": "38;2;74;75;71" },
+    { "type": "custom", "format": "\u001b[38;2;127;166;110m╭ \u001b[38;2;207;205;196mhardware" },
+    { "type": "cpu", "key": "│ cpu      ", "keyColor": "38;2;74;75;71", "format": "{cores-physical} cores, {cores-logical} threads" },
+    { "type": "gpu", "key": "│ gpu      ", "keyColor": "38;2;74;75;71", "format": "{name}" },
+    { "type": "memory", "key": "│ memory   ", "keyColor": "38;2;74;75;71", "format": "{percentage-bar} {used} / {total}" },
+    { "type": "disk", "key": "│ disk     ", "keyColor": "38;2;74;75;71", "folders": "/", "format": "{size-percentage-bar} {size-used} / {size-total}" },
+    { "type": "battery", "key": "╰ battery  ", "keyColor": "38;2;74;75;71", "format": "{capacity-bar} {capacity}" },
     "break",
 
-    { "type": "custom", "format": "\u001b[38;2;127;166;110m╭─ \u001b[38;2;207;205;196mtoday" },
-    { "type": "uptime", "key": "│  awake      ", "keyColor": "38;2;74;75;71" },
-    { "type": "datetime", "key": "╰  now        ", "keyColor": "38;2;74;75;71", "format": "{weekday} {day-in-month} {month-name}, {hour-pretty}:{minute-pretty}" },
+    { "type": "custom", "format": "\u001b[38;2;127;166;110m╭ \u001b[38;2;207;205;196mtoday" },
+    { "type": "uptime", "key": "│ awake    ", "keyColor": "38;2;74;75;71" },
+    { "type": "datetime", "key": "╰ now      ", "keyColor": "38;2;74;75;71", "format": "{weekday} {day-in-month} {month-name-short}, {hour-pretty}:{minute-pretty}" },
     "break",
     {
       "type": "custom",
