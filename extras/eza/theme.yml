@@ -1,0 +1,92 @@
+# Kokemusu for eza (ls). install-extras.sh copies this to ~/.config/eza/theme.yml.
+# Folders in moss, files in faded paper, metadata in grey stone. Source files
+# keep a warm note so code stands out from everything else.
+filekinds:
+  normal: {foreground: "#cfcdc4"}
+  directory: {foreground: "#7fa66e", is_bold: true}
+  symlink: {foreground: "#88aea7"}
+  pipe: {foreground: "#a798b0"}
+  block_device: {foreground: "#d6bd8a"}
+  char_device: {foreground: "#d6bd8a"}
+  socket: {foreground: "#a798b0"}
+  special: {foreground: "#a798b0"}
+  executable: {foreground: "#d4a185", is_bold: true}
+  mount_point: {foreground: "#88aea7", is_bold: true}
+
+perms:
+  user_read: {foreground: "#b5b3aa"}
+  user_write: {foreground: "#d6bd8a"}
+  user_execute_file: {foreground: "#7fa66e"}
+  user_execute_other: {foreground: "#7fa66e"}
+  group_read: {foreground: "#7c7d77"}
+  group_write: {foreground: "#7c7d77"}
+  group_execute: {foreground: "#7c7d77"}
+  other_read: {foreground: "#62635e"}
+  other_write: {foreground: "#62635e"}
+  other_execute: {foreground: "#62635e"}
+  special_user_file: {foreground: "#a798b0"}
+  special_other: {foreground: "#a798b0"}
+  attribute: {foreground: "#62635e"}
+
+size:
+  major: {foreground: "#9a9890"}
+  minor: {foreground: "#9a9890"}
+  number_byte: {foreground: "#9a9890"}
+  number_kilo: {foreground: "#b5b3aa"}
+  number_mega: {foreground: "#cfcdc4"}
+  number_giga: {foreground: "#d4a185"}
+  number_huge: {foreground: "#c98378"}
+  unit_byte: {foreground: "#62635e"}
+  unit_kilo: {foreground: "#62635e"}
+  unit_mega: {foreground: "#62635e"}
+  unit_giga: {foreground: "#62635e"}
+  unit_huge: {foreground: "#62635e"}
+
+users:
+  user_you: {foreground: "#b5b3aa"}
+  user_root: {foreground: "#c98378"}
+  user_other: {foreground: "#7c7d77"}
+  group_yours: {foreground: "#7c7d77"}
+  group_other: {foreground: "#62635e"}
+  group_root: {foreground: "#c98378"}
+
+links:
+  normal: {foreground: "#88aea7"}
+  multi_link_file: {foreground: "#88aea7"}
+
+git:
+  new: {foreground: "#7fa66e"}
+  modified: {foreground: "#d6bd8a"}
+  deleted: {foreground: "#c98378"}
+  renamed: {foreground: "#88aea7"}
+  ignored: {foreground: "#4a4b47"}
+  conflicted: {foreground: "#c98378"}
+
+git_repo:
+  branch_main: {foreground: "#7fa66e"}
+  branch_other: {foreground: "#d6bd8a"}
+  git_clean: {foreground: "#7fa66e"}
+  git_dirty: {foreground: "#d6bd8a"}
+
+file_type:
+  image: {foreground: "#a798b0"}
+  video: {foreground: "#a798b0"}
+  music: {foreground: "#88aea7"}
+  crypto: {foreground: "#c98378"}
+  document: {foreground: "#b5b3aa"}
+  compressed: {foreground: "#d4a185"}
+  temp: {foreground: "#62635e"}
+  compiled: {foreground: "#7c7d77"}
+  build: {foreground: "#d6bd8a", is_underline: true}
+  source: {foreground: "#d6bd8a"}
+
+punctuation: {foreground: "#4a4b47"}
+date: {foreground: "#869fae"}
+inode: {foreground: "#62635e"}
+blocks: {foreground: "#62635e"}
+header: {foreground: "#9a9890", is_underline: true}
+octal: {foreground: "#7c7d77"}
+flags: {foreground: "#7c7d77"}
+control_char: {foreground: "#c98378"}
+broken_symlink: {foreground: "#c98378"}
+broken_path_overlay: {foreground: "#c98378", is_underline: true}

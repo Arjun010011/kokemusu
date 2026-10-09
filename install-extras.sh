@@ -3,7 +3,7 @@
 #   ./install-extras.sh            install (each replaced file is backed up once)
 #   ./install-extras.sh --remove   restore the backups
 #
-# Touches only colour/look files: GTK, starship, fastfetch, lazygit, yazi, cava, tmux,
+# Touches only colour/look files: GTK, starship, fastfetch, lazygit, yazi, eza, cava, tmux,
 # fish, Zed, opencode, Zen browser, the system font, the bar, clock and status icons
 # (rebuilt from Omarchy's stock files plus a small patch), and the lock screen (a clone
 # of omarchy.lock whose LockView.qml is replaced). It never needs sudo: fonts go to
@@ -61,6 +61,7 @@ targets=(
   "$cfg/fastfetch/config.jsonc"
   "$cfg/fastfetch/kokemusu-logo.txt"
   "$cfg/yazi/theme.toml"
+  "$cfg/eza/theme.yml"
   "$cfg/cava/themes/kokemusu"
   "$cfg/tmux/kokemusu.conf"
   "$cfg/lazygit/config.yml"
@@ -86,6 +87,8 @@ if [[ ${1:-} == --remove ]]; then
   rm -f "$cfg/hypr/kokemusu.lua" "$cfg/nvim/lua/plugins/kokemusu.lua"
   rm -f "$cfg/fish/conf.d/zzz-kokemusu.fish" "$cfg/fish/conf.d/zzz-kokemusu-tide.fish"
   for w in "${widgets[@]}"; do rm -f "$cfg/omarchy/plugins/$USER.$w/StoneIcon.qml"; done
+  for f in "$cfg/omarchy/plugins/$USER.indicators/indicators"/*.qml."$tag"; do [[ -e $f ]] && mv -f "$f" "${f%.$tag}"; done
+  rm -f "$cfg/omarchy/plugins/$USER.indicators/indicators/InkGlyph.qml"
   if [[ -f $state/previous-font ]] && command -v omarchy >/dev/null; then
     prev=$(<"$state/previous-font")
     [[ -n $prev ]] && omarchy font set "$prev" >/dev/null 2>&1 && say "font restored to $prev"
@@ -144,6 +147,7 @@ else
 fi
 
 command -v yazi >/dev/null && place "$extras/yazi-theme.toml" "$cfg/yazi/theme.toml" || dim "yazi not installed"
+command -v eza >/dev/null && place "$extras/eza/theme.yml" "$cfg/eza/theme.yml" || dim "eza not installed"
 
 if command -v cava >/dev/null; then
   place "$extras/cava-theme" "$cfg/cava/themes/kokemusu"
@@ -311,6 +315,19 @@ shell_patch() {
 if command -v omarchy >/dev/null; then
   shell_patch omarchy.bar "$stock/bar/Bar.qml" Bar.qml "$extras/shell/bar.patch"
   shell_patch omarchy.clock "$stock/panels/clock/BarWidget.qml" BarWidget.qml "$extras/shell/clock.patch"
+  # Indicators (stay awake, night light, ...): bar-sized icons centred on their ink.
+  # Cloning omarchy.indicators also switches the bar layout to the clone.
+  [[ -d $cfg/omarchy/plugins/$USER.indicators ]] || omarchy plugin clone omarchy.indicators >/dev/null
+  ind_dir="$cfg/omarchy/plugins/$USER.indicators/indicators"
+  if [[ -d $ind_dir ]]; then
+    for f in "$ind_dir"/*.qml; do
+      [[ $(basename "$f") == InkGlyph.qml ]] && continue
+      [[ -e $f.$tag ]] || cp -a "$f" "$f.$tag"
+    done
+    cp "$extras/shell/InkGlyph.qml" "$ind_dir/InkGlyph.qml"
+    python3 "$extras/shell/indicators.py" "$stock/bar/indicators" "$ind_dir" >/dev/null
+    say "${ind_dir/#$HOME/\~} (centred icons)"
+  fi
   # Hairline icons: each status widget keeps its logic and draws StoneIcon.
   for w in "${widgets[@]}"; do
     shell_patch "omarchy.$w" "$stock/panels/$w/Panel.qml" Panel.qml "$extras/shell/$w.patch"

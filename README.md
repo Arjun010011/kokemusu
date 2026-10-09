@@ -47,7 +47,7 @@ prompts, the cpu meter); every surface and meter is one flat colour.
 | **btop** | Grey boxes, one flat colour per meter: moss cpu, lichen memory, creek download, peach upload and temperature. |
 | **Terminals** | Alacritty, Ghostty, Kitty and Foot, with matching padding and a beam cursor. |
 | **Motion** | Windows rise a little as they open, workspaces slide and fade, unfocused windows dim slightly, solid borders. |
-| **Apps** | Neovim, Zed, opencode, Zen browser, GTK 3/4, fish and Tide, tmux, starship, fastfetch (a fern on a mossy stone), lazygit, yazi, cava. |
+| **Apps** | Neovim, Zed, opencode, Zen browser, GTK 3/4, fish and Tide, tmux, starship, fastfetch (a fern on a mossy stone), eza (moss folders), lazygit, yazi, cava. |
 | **Fonts** | BlexMono Nerd Font (IBM Plex Mono) for the system, Instrument Serif for the clock and lock screen. |
 | **Wallpapers** | Nine 4K greenery photos: foggy laurel forest, ferns, moss, sunlit beech, a mossy stream, tea hills and misty karst peaks. |
 
