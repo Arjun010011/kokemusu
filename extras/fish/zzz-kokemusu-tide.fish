@@ -30,3 +30,13 @@ for var in (set -U --names | string match 'tide_*color*')
         end
     end
 end
+
+# The git pill: stone background with coloured text, so green stays a small accent.
+for pair in git_bg_color:2a2b29 git_bg_color_unstable:2a2b29 git_bg_color_urgent:2a2b29 \
+    git_color_branch:7fa66e git_color_dirty:d6bd8a git_color_staged:7fa66e \
+    git_color_untracked:869fae git_color_upstream:cfcdc4 git_color_stash:a798b0 \
+    git_color_conflicted:c98378 git_color_operation:c98378
+    set -l kv (string split : -- $pair)
+    set -l var tide_$kv[1]
+    test "$$var" = "$kv[2]"; or set -U $var $kv[2]
+end

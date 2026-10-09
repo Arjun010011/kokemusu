@@ -103,7 +103,7 @@ printf '  \e[38;2;207;205;196mKokemusu\e[0m \e[38;2;98;99;94mextras\e[0m\n\n'
 # ttf-ibmplex-mono-nerd package if installed, or is downloaded from Nerd Fonts here.
 mkdir -p "$fonts_dir"
 cp "$extras"/fonts/*.ttf "$extras/fonts/OFL.txt" "$fonts_dir/"
-if ! fc-list | grep -Fqi "$mono_font"; then
+if ! fc-list : family | grep -Fi "$mono_font" >/dev/null; then
   tmp=$(mktemp -d)
   if curl -fsSL "$nerd_fonts_url" -o "$tmp/plex.tar.xz" && tar -xJf "$tmp/plex.tar.xz" -C "$tmp"; then
     mkdir -p "$fonts_dir/BlexMono"
@@ -118,14 +118,15 @@ fi
 fc-cache -f "$fonts_dir" >/dev/null 2>&1 || true
 say "${fonts_dir/#$HOME/\~} (Instrument Serif)"
 
-if command -v omarchy >/dev/null && fc-list | grep -Fqi "$mono_font"; then
+if command -v omarchy >/dev/null && fc-list : family | grep -Fi "$mono_font" >/dev/null; then
   current_font=$(omarchy font current 2>/dev/null || true)
   mkdir -p "$state"
   if [[ ! -f $state/previous-font && -n $current_font && $current_font != "$mono_font" ]]; then
     printf '%s' "$current_font" >"$state/previous-font"
   fi
   if [[ $current_font != "$mono_font" ]]; then
-    omarchy font set "$mono_font" >/dev/null 2>&1 && say "system font: $mono_font"
+    omarchy font set "$mono_font" >/dev/null 2>&1 || true
+    [[ $(omarchy font current 2>/dev/null) == "$mono_font" ]] && say "system font: $mono_font" || dim "could not set the font; run: omarchy font set \"$mono_font\""
   fi
 fi
 

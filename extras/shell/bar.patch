@@ -73,7 +73,7 @@
            anchors.horizontalCenter: parent.horizontalCenter
          }
        }
-@@ -1521,6 +1538,29 @@
+@@ -1521,6 +1538,30 @@
      return idx === -1 ? null : entries[idx]
    }
  
@@ -95,7 +95,8 @@
 +    radius: Math.min(Math.max(Style.cornerRadius - 2, 8), Math.min(width, height) / 2)
 +    color: root.background
 +    border.width: 1
-+    border.color: Util.alpha(Color.foreground, root.barHovered ? 0.16 : 0.09)
++    // Grey at rest; a thin moss edge wakes while the pointer is on the bar.
++    border.color: root.barHovered ? Util.alpha(Color.accent, 0.5) : Util.alpha(Color.foreground, 0.09)
 +
 +    Behavior on border.color { ColorAnimation { duration: 260; easing.type: Easing.OutCubic } }
 +  }
@@ -103,7 +104,7 @@
    component LeftModules: ModuleList {
      entries: root.layoutEntries("left")
      region: "left"
-@@ -1555,7 +1595,13 @@
+@@ -1555,7 +1596,13 @@
            onHoveredChanged: root.setCenterSectionHovered(hovered)
          }
  
@@ -117,7 +118,7 @@
            visible: !centerRoot.hasAnchor
            entries: centerRoot.entries
            region: "center"
-@@ -1563,6 +1609,7 @@
+@@ -1563,6 +1610,7 @@
          }
  
          ModuleList {
@@ -125,7 +126,7 @@
            visible: centerRoot.hasAnchor
            entries: root.entriesBefore(centerRoot.entries, root.centerAnchor)
            region: "center"
-@@ -1579,6 +1626,7 @@
+@@ -1579,6 +1627,7 @@
          }
  
          ModuleList {
@@ -133,7 +134,7 @@
            visible: centerRoot.hasAnchor
            entries: root.entriesAfter(centerRoot.entries, root.centerAnchor)
            region: "center"
-@@ -1600,7 +1648,13 @@
+@@ -1600,7 +1649,13 @@
            onHoveredChanged: root.setCenterSectionHovered(hovered)
          }
  
@@ -147,7 +148,7 @@
            visible: !centerRoot.hasAnchor
            entries: centerRoot.entries
            region: "center"
-@@ -1608,6 +1662,7 @@
+@@ -1608,6 +1663,7 @@
          }
  
          ModuleList {
@@ -155,7 +156,7 @@
            visible: centerRoot.hasAnchor
            entries: root.entriesBefore(centerRoot.entries, root.centerAnchor)
            region: "center"
-@@ -1624,6 +1679,7 @@
+@@ -1624,6 +1680,7 @@
          }
  
          ModuleList {

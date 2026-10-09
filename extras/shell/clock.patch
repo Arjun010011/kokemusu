@@ -25,7 +25,7 @@
      fixedHeight: root.vertical ? root.verticalLines.length * Style.bar.iconSlot : -1
      horizontalMargin: 8.75
      verticalPadding: 8.75
-@@ -156,6 +164,41 @@
+@@ -156,6 +164,50 @@
        else root.togglePanel()
      }
  
@@ -34,6 +34,15 @@
 +      visible: root.crafted
 +      anchors.centerIn: parent
 +      spacing: Style.spaceReal(3)
++
++      // A small moss dot, the same mark the lock screen uses.
++      Rectangle {
++        anchors.verticalCenter: timeText.verticalCenter
++        width: Math.max(4, Math.round(button.fontSize * 0.42))
++        height: width
++        radius: width / 2
++        color: Color.accent
++      }
 +
 +      Text {
 +        anchors.baseline: timeText.baseline

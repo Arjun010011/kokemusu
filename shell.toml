@@ -1,6 +1,7 @@
 # Kokemusu shell surfaces. Flat charcoal cards, faded paper text, grey
 # hairline borders. Moss green appears only on small signals: the active
-# workspace, switches that are on, the countdown line. No gradients.
+# workspace, the clock dot, hovered and selected rows, switches that are on,
+# the countdown line. No gradients.
 
 [bar]
 # Alpha companions (where present) range from 0 (invisible) to 1 (opaque).
@@ -30,12 +31,12 @@ normal-border       = "#cfcdc4"
 normal-border-width = 1
 normal-border-alpha = 0.12
 
-# Hover-cursor: mouse hover and the panel keyboard cursor. Grey, not green.
+# Hover-cursor: mouse hover and the panel keyboard cursor. A faint moss edge.
 hover-cursor-color        = "#e0ded5"
 hover-cursor-fill-alpha   = 0.07
-hover-cursor-border       = "#6e6f69"
+hover-cursor-border       = "#7fa66e"
 hover-cursor-border-width = 1
-hover-cursor-border-alpha = 0.8
+hover-cursor-border-alpha = 0.5
 
 # Focus: Qt activeFocus. A plain grey ring.
 focus-color        = "#e0ded5"
@@ -144,8 +145,8 @@ scrim-alpha               = 0.4
 selected-background       = "#2d3a2f"
 selected-background-alpha = 1.0
 selected-text             = "#e0ded5"
-selected-border           = "#2d3a2f"
-selected-border-alpha     = 0.0
+selected-border           = "#7fa66e"
+selected-border-alpha     = 0.55
 
 [menu]
 background                = "#1a1b1a"
@@ -158,8 +159,8 @@ scrim-alpha               = 0.4
 selected-background       = "#2d3a2f"
 selected-background-alpha = 1.0
 selected-text             = "#e0ded5"
-selected-border           = "#2d3a2f"
-selected-border-alpha     = 0.0
+selected-border           = "#7fa66e"
+selected-border-alpha     = 0.55
 
 [polkit]
 background       = "#1a1b1a"
@@ -191,7 +192,7 @@ selection-alpha  = 0.4
 scrim                   = "#0e0f0e"
 scrim-alpha             = 0.55
 text                    = "#cfcdc4"
-selected-border         = "#cfcdc4"
+selected-border         = "#7fa66e"
 selected-border-alpha   = 1.0
 unselected-border       = "#cfcdc4"
 unselected-border-alpha = 0.14
