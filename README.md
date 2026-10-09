@@ -41,7 +41,7 @@ prompts, the cpu meter); every surface and meter is one flat colour.
 
 | Part | What it does |
 |---|---|
-| **Bar** | Three floating "pebbles" (left, centre, right), each a flat charcoal block with a grey hairline, lined up with the window gaps. Hand-drawn hairline icons for Wi-Fi, Bluetooth, volume, display and battery. |
+| **Bar** | One flat full-width charcoal strip with a grey hairline that turns faintly moss on hover. Hand-drawn hairline icons for Wi-Fi, Bluetooth, volume, display and battery. If you use the [Spaces](https://github.com/tornikegomareli/omarchy-spaces) workspace widget, its Accent style becomes a dim moss wash with a moss number. |
 | **Clock** | Lowercase weekday in the mono font, the time in Instrument Serif, an italic meridiem. |
 | **Lock screen** | The wallpaper under one flat veil, a large serif time set low on the left, 苔むす in the corner, and a solid password card with a grey border. Moss shows only as one small dot. |
 | **btop** | Grey boxes, one flat colour per meter: moss cpu, lichen memory, creek download, peach upload and temperature. |

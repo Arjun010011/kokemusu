@@ -1,0 +1,20 @@
+--- Spaces.qml
++++ Spaces.qml
+@@ -57,13 +57,16 @@
+   readonly property var metrics: Model.densityMetrics(cfg.density)
+   readonly property bool widgetHovered: widgetHover.hovered
+ 
++  // Kokemusu: "accent" is a dim moss wash with a moss number instead of a
++  // solid accent block, so the active workspace is green without glaring.
+   function activeFill() {
+     if (cfg.activeStyle === "solid") return root.fg
+-    if (cfg.activeStyle === "accent") return Color.accent
++    if (cfg.activeStyle === "accent") return Util.alpha(Color.accent, 0.2)
+     return Util.alpha(root.fg, 0.18)
+   }
+ 
+   function activeText() {
++    if (cfg.activeStyle === "accent") return Color.accent
+     return cfg.activeStyle === "subtle" ? root.fg : root.bg
+   }
+ 

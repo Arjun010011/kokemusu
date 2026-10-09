@@ -67,6 +67,7 @@ targets=(
   "$cfg/omarchy/plugins/$USER.lock/LockView.qml"
   "$cfg/omarchy/plugins/$USER.bar/Bar.qml"
   "$cfg/omarchy/plugins/$USER.clock/BarWidget.qml"
+  "$cfg/omarchy/plugins/tornikegomareli.spaces/Spaces.qml"
 )
 for w in "${widgets[@]}"; do targets+=("$cfg/omarchy/plugins/$USER.$w/Panel.qml"); done
 
@@ -315,6 +316,19 @@ if command -v omarchy >/dev/null; then
     shell_patch "omarchy.$w" "$stock/panels/$w/Panel.qml" Panel.qml "$extras/shell/$w.patch"
     [[ -d $cfg/omarchy/plugins/$USER.$w ]] && cp "$extras/shell/StoneIcon.qml" "$cfg/omarchy/plugins/$USER.$w/StoneIcon.qml"
   done
+  # tornikegomareli.spaces (third-party workspace widget), if installed: its "accent"
+  # style becomes a dim moss wash with a moss number instead of a solid block.
+  spaces_dir="$cfg/omarchy/plugins/tornikegomareli.spaces"
+  if [[ -f $spaces_dir/Spaces.qml ]] && ! grep -q "Kokemusu" "$spaces_dir/Spaces.qml"; then
+    if patch -s --dry-run "$spaces_dir/Spaces.qml" "$extras/shell/spaces.patch" >/dev/null 2>&1; then
+      [[ -e $spaces_dir/Spaces.qml.$tag ]] || cp -a "$spaces_dir/Spaces.qml" "$spaces_dir/Spaces.qml.$tag"
+      patch -s "$spaces_dir/Spaces.qml" "$extras/shell/spaces.patch"
+      say "${spaces_dir/#$HOME/\~}/Spaces.qml (set Active style to Accent)"
+    else
+      dim "tornikegomareli.spaces changed upstream; patch skipped"
+    fi
+  fi
+
   if command -v jq >/dev/null && [[ -f $cfg/omarchy/shell.json ]]; then
     tmp=$(mktemp)
     jq '(.bar.centerAnchor) |= (if . == "omarchy.clock" then env.USER + ".clock" else . end)' "$cfg/omarchy/shell.json" >"$tmp" && mv "$tmp" "$cfg/omarchy/shell.json"

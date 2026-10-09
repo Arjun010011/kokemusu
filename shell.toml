@@ -5,16 +5,14 @@
 
 [bar]
 # Alpha companions (where present) range from 0 (invisible) to 1 (opaque).
-# With the Kokemusu bar patch this colours the three floating blocks; the
-# strip behind them stays clear.
 background       = "#1a1b1a"
 background-alpha = 0.94
 text             = "#b5b3aa"
 # Modules calling attention to themselves (recording, voxtype, alerts, updates)
 active           = "#d4a185"
 scale-with-font  = true
-size-horizontal  = 36
-size-vertical    = 34
+size-horizontal  = 32
+size-vertical    = 30
 icon-font        = 12
 
 [hyprland]

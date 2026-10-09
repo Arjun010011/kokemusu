@@ -1,166 +1,22 @@
 --- Bar.qml
 +++ Bar.qml
-@@ -555,6 +555,13 @@
-   readonly property bool vertical: position === "left" || position === "right"
-   readonly property int barSize: vertical ? Style.bar.sizeVertical : Style.bar.sizeHorizontal
- 
-+  // Kokemusu: the bar is three floating pebbles (left, centre, right) on a
-+  // clear strip. Each pebble is one flat fill with a grey hairline; the outer
-+  // pebbles line up with the window gaps. No gradients.
-+  readonly property int pebbleInset: Math.max(3, Math.round(barSize * 0.12))
-+  readonly property int pebblePad: Style.space(6)
-+  readonly property int pebbleEdge: Style.gapsOut * 2 + pebblePad
-+
-   function normalizePosition(value) {
-     return BarModel.normalizePosition(value)
-   }
-@@ -1263,7 +1270,7 @@
- 
-     implicitWidth: root.vertical ? root.barSize : 0
-     implicitHeight: root.vertical ? 0 : root.barSize
--    color: root.transparent ? "transparent" : root.background
-+    color: "transparent"
-     surfaceFormat.opaque: false
+@@ -1268,6 +1268,19 @@
      WlrLayershell.namespace: "omarchy-bar"
      WlrLayershell.layer: WlrLayer.Top
-@@ -1353,17 +1360,22 @@
-       Item {
-         anchors.fill: parent
  
-+        Pebble { first: leftModules; last: leftModules }
-+        Pebble { first: rightModules; last: rightModules }
++    // Kokemusu: one flat full-width strip. A grey hairline on the edge facing
++    // the desktop turns faintly moss while the pointer is on the bar.
++    Rectangle {
++      visible: !root.transparent
++      z: 1
++      x: root.vertical ? (root.position === "left" ? parent.width - 1 : 0) : 0
++      y: root.vertical ? 0 : (root.position === "bottom" ? 0 : parent.height - 1)
++      width: root.vertical ? 1 : parent.width
++      height: root.vertical ? parent.height : 1
++      color: root.barHovered ? Util.alpha(Color.accent, 0.45) : Util.alpha(Color.foreground, 0.1)
++      Behavior on color { ColorAnimation { duration: 320; easing.type: Easing.OutCubic } }
++    }
 +
-         CenterModules { anchors.fill: parent }
- 
-         LeftModules {
-+          id: leftModules
-           anchors.left: parent.left
--          anchors.leftMargin: Style.space(8)
-+          anchors.leftMargin: root.pebbleEdge
-           anchors.verticalCenter: parent.verticalCenter
-         }
- 
-         RightModules {
-+          id: rightModules
-           anchors.right: parent.right
--          anchors.rightMargin: Style.space(8)
-+          anchors.rightMargin: root.pebbleEdge
-           anchors.verticalCenter: parent.verticalCenter
-         }
-       }
-@@ -1375,17 +1387,22 @@
-       Item {
-         anchors.fill: parent
- 
-+        Pebble { first: topModules; last: topModules }
-+        Pebble { first: bottomModules; last: bottomModules }
-+
-         CenterModules { anchors.fill: parent }
- 
-         LeftModules {
-+          id: topModules
-           anchors.top: parent.top
--          anchors.topMargin: Style.space(8)
-+          anchors.topMargin: root.pebbleEdge
-           anchors.horizontalCenter: parent.horizontalCenter
-         }
- 
-         RightModules {
-+          id: bottomModules
-           anchors.bottom: parent.bottom
--          anchors.bottomMargin: Style.space(8)
-+          anchors.bottomMargin: root.pebbleEdge
-           anchors.horizontalCenter: parent.horizontalCenter
-         }
-       }
-@@ -1521,6 +1538,30 @@
-     return idx === -1 ? null : entries[idx]
-   }
- 
-+  // Kokemusu: one floating pebble behind a run of modules, from `first` to
-+  // `last` (siblings in the same parent). Hidden while that run is empty.
-+  component Pebble: Rectangle {
-+    property Item first: null
-+    property Item last: null
-+    readonly property bool live: !root.transparent && first !== null && last !== null
-+      && first.visible && last.visible && first.width > 0 && last.width > 0
-+
-+    visible: live
-+    x: root.vertical ? root.pebbleInset : (live ? first.x - root.pebblePad : 0)
-+    y: root.vertical ? (live ? first.y - root.pebblePad : 0) : root.pebbleInset
-+    width: root.vertical ? parent.width - root.pebbleInset * 2
-+                         : (live ? last.x + last.width - first.x + root.pebblePad * 2 : 0)
-+    height: root.vertical ? (live ? last.y + last.height - first.y + root.pebblePad * 2 : 0)
-+                          : parent.height - root.pebbleInset * 2
-+    radius: Math.min(Math.max(Style.cornerRadius - 2, 8), Math.min(width, height) / 2)
-+    color: root.background
-+    border.width: 1
-+    // Grey at rest; a thin moss edge wakes while the pointer is on the bar.
-+    border.color: root.barHovered ? Util.alpha(Color.accent, 0.5) : Util.alpha(Color.foreground, 0.09)
-+
-+    Behavior on border.color { ColorAnimation { duration: 260; easing.type: Easing.OutCubic } }
-+  }
-+
-   component LeftModules: ModuleList {
-     entries: root.layoutEntries("left")
-     region: "left"
-@@ -1555,7 +1596,13 @@
-           onHoveredChanged: root.setCenterSectionHovered(hovered)
-         }
- 
-+        Pebble {
-+          first: centerRoot.hasAnchor ? (centerBeforeH.width > 0 ? centerBeforeH : centerAnchorModule) : centerPlainH
-+          last: centerRoot.hasAnchor ? (centerAfterH.width > 0 ? centerAfterH : centerAnchorModule) : centerPlainH
-+        }
-+
-         ModuleList {
-+          id: centerPlainH
-           visible: !centerRoot.hasAnchor
-           entries: centerRoot.entries
-           region: "center"
-@@ -1563,6 +1610,7 @@
-         }
- 
-         ModuleList {
-+          id: centerBeforeH
-           visible: centerRoot.hasAnchor
-           entries: root.entriesBefore(centerRoot.entries, root.centerAnchor)
-           region: "center"
-@@ -1579,6 +1627,7 @@
-         }
- 
-         ModuleList {
-+          id: centerAfterH
-           visible: centerRoot.hasAnchor
-           entries: root.entriesAfter(centerRoot.entries, root.centerAnchor)
-           region: "center"
-@@ -1600,7 +1649,13 @@
-           onHoveredChanged: root.setCenterSectionHovered(hovered)
-         }
- 
-+        Pebble {
-+          first: centerRoot.hasAnchor ? (centerBeforeV.width > 0 ? centerBeforeV : centerAnchorModule) : centerPlainV
-+          last: centerRoot.hasAnchor ? (centerAfterV.width > 0 ? centerAfterV : centerAnchorModule) : centerPlainV
-+        }
-+
-         ModuleList {
-+          id: centerPlainV
-           visible: !centerRoot.hasAnchor
-           entries: centerRoot.entries
-           region: "center"
-@@ -1608,6 +1663,7 @@
-         }
- 
-         ModuleList {
-+          id: centerBeforeV
-           visible: centerRoot.hasAnchor
-           entries: root.entriesBefore(centerRoot.entries, root.centerAnchor)
-           region: "center"
-@@ -1624,6 +1680,7 @@
-         }
- 
-         ModuleList {
-+          id: centerAfterV
-           visible: centerRoot.hasAnchor
-           entries: root.entriesAfter(centerRoot.entries, root.centerAnchor)
-           region: "center"
+     Loader {
+       anchors.fill: parent
+       sourceComponent: root.vertical ? verticalBar : horizontalBar
