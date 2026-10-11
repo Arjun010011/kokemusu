@@ -125,6 +125,14 @@ they keep working the same way whichever theme patched them before.</sub>
 omarchy plymouth set by theme kokemusu
 ```
 
+<sub>If this fails with `refusing to publish: directory /usr/share/plymouth/themes/omarchy (must be root-owned and not group- or world-writable)`, that folder on your system was left owned by your user (an older Omarchy plymouth step can do this). Omarchy refuses to write boot files into a folder a normal user can change. Give it back to root, then run the command again:</sub>
+
+```bash
+sudo chown root:root /usr/share/plymouth/themes/omarchy
+sudo chmod 755 /usr/share/plymouth/themes/omarchy
+omarchy plymouth set by theme kokemusu
+```
+
 <img src=".github/readme/divider.svg" alt="" width="100%">
 
 ## 色 · Palette
